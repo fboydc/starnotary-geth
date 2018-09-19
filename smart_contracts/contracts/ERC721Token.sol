@@ -3,7 +3,9 @@ pragma solidity ^0.4.24;
 import './ERC721.sol'; 
 
 contract ERC721Token is ERC721 {
-	function balanceOf(address _owner) external view returns (uint256);
+	function balanceOf(address _owner) external view returns (uint256){
+		return 0;
+	}
 
     /// @notice Find the owner of an NFT
     /// @dev NFTs assigned to zero address are considered invalid, and queries
