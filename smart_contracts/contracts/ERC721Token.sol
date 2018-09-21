@@ -1,24 +1,24 @@
 pragma solidity ^0.4.24;
 
-import './ERC721.sol'; 
+import './ERC721.sol';
 
 contract ERC721Token is ERC721 {
 
 	mapping(uint256 => address) tokenToOwner;
 	mapping(address => uint256) ownerToBalance;
 
-	function mint(uint256 _tokeId) public{
+	function mint(uint256 _tokenId) public{
 		require(tokenToOwner[_tokenId] == address(0), "this token belongs to someone else already");
 
 		tokenToOwner[_tokenId] = msg.sender;
-		ownerToBalance[msg.sender] += 1; 
+		ownerToBalance[msg.sender] += 1;
 
 		emit Transfer(address(0), msg.sender, _tokenId);
 
 	}
 
 	function balanceOf(address _owner) external view returns (uint256){
-		require(_owner != address(0), "cannot ask of balance of address 0")
+		require(_owner != address(0), "cannot ask of balance of address 0");
 		return ownerToBalance[_owner];
 	}
 
