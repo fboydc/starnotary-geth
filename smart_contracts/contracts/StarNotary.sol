@@ -1,18 +1,20 @@
 pragma solidity ^0.4.23;
 
-contract StarNotary { 
+import "./ERC721Token.sol";
 
-    string public starName; 
-    address public starOwner;
+contract StarNotary is ERC721Token { 
 
-    event starClaimed(address owner);
-    
-    constructor() public { 
-        starName = "Awesome Udacity Star";
+    struct Star {
+        string name;
     }
 
-    function claimStar() public { 
-        starOwner = msg.sender;
-        emit starClaimed(msg.sender);
+    mapping(uint256 => Star) public tokenIdToStarInfo;
+
+    function createStar(string _name, uint256 _tokenId) public{
+        Star memory newStar = Star(_name);
+
+        tokenIdToStarInfo[_tokenId] = newStar;
+
+        ERC721Token.mint(_tokenId);
     }
 }

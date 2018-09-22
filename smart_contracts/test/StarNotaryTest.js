@@ -1,9 +1,10 @@
 const starDefinition = artifacts.require('StarNotary');
 
 contract('StarNotary', accounts => 	{
+	/*
 	var owner = accounts[0]
 	var contractInstance
-
+	
 	beforeEach(async function(){
 		contractInstance = await starDefinition.new({from: owner})
 	})
@@ -36,5 +37,9 @@ contract('StarNotary', accounts => 	{
 
 			assert.equal(await contractInstance.starOwner(), secondUser)
 		})
+	})*/
+
+	beforeEach(async function() {
+		this.contract = await StarNotary.new({from: account});
 	})
 })
